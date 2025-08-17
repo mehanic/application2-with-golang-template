@@ -15,31 +15,26 @@ import (
 func ParsingHandler(res http.ResponseWriter, req *http.Request) {
 	wd, err := os.Getwd()
 	if err != nil {
-		log.Fatalln("Не удалось получить рабочую директорию:", err)
+		log.Fatalln("have no working directory:", err)
 	}
 
-	// читаем CSV
 	records := Prs(filepath.Join(wd, "templates", "table.csv"))
-	// **выводим в лог для проверки**
 	//	log.Printf("Records: %+v", records)
 	tpl, err := template.ParseFiles(filepath.Join(wd, "templates", "hw.gohtml"))
 	if err != nil {
-		log.Fatalln("Ошибка парсинга шаблона:", err)
+		log.Fatalln("Fail of parsing templates:", err)
 	}
 
-	// исполняем шаблон с данными
 	err = tpl.Execute(res, records)
 	if err != nil {
 		log.Fatalln(err)
 	}
 }
 
-// функция парсинга CSV
-
 func Prs(filePath string) []models.Record {
 	src, err := os.Open(filePath)
 	if err != nil {
-		log.Fatalln("Ошибка открытия CSV:", err)
+		log.Fatalln("Fail to open CSV:", err)
 	}
 	defer src.Close()
 

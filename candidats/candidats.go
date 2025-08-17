@@ -12,7 +12,7 @@ import (
 func AgentHandler(res http.ResponseWriter, req *http.Request) {
 	wd, err := os.Getwd()
 	if err != nil {
-		log.Fatalln("Не удалось получить рабочую директорию:", err)
+		log.Fatalln("have no work directory:", err)
 	}
 
 	// создаём данные агента
@@ -28,12 +28,12 @@ func AgentHandler(res http.ResponseWriter, req *http.Request) {
 	tplPath := filepath.Join(wd, "templates", "doublezero.gohtml")
 	tpl, err := template.ParseFiles(tplPath)
 	if err != nil {
-		log.Fatalln("Ошибка парсинга шаблона:", err)
+		log.Fatalln("Fail of parsing this templates:", err)
 	}
 
 	// исполняем шаблон с данными
 	err = tpl.Execute(res, agent)
 	if err != nil {
-		log.Fatalln("Ошибка выполнения шаблона:", err)
+		log.Fatalln("Fail of executing of templates:", err)
 	}
 }

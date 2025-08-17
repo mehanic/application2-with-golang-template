@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{.Title}}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        ul {
+            list-style-type: square;
+            margin-left: 20px;
+        }
+        li {
+            margin: 5px 0;
+        }
+        .year-block {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>{{.Heading}}</h1>
+    <p>{{.Message}}</p>
+
+    {{range .Years}}
+    <div class="year-block">
+        <h2>Academic Year: {{.AcaYear}}</h2>
+
+        {{with .Fall}}
+            <h3>{{.Term}}</h3>
+            <ul>
+                {{range .Courses}}
+                    <li>{{.Number}} – {{.Name}} ({{.Units}} units)</li>
+                {{end}}
+            </ul>
+        {{end}}
+
+        {{with .Spring}}
+            <h3>{{.Term}}</h3>
+            <ul>
+                {{range .Courses}}
+                    <li>{{.Number}} – {{.Name}} ({{.Units}} units)</li>
+                {{end}}
+            </ul>
+        {{end}}
+
+        {{with .Summer}}
+            <h3>{{.Term}}</h3>
+            <ul>
+                {{range .Courses}}
+                    <li>{{.Number}} – {{.Name}} ({{.Units}} units)</li>
+                {{end}}
+            </ul>
+        {{end}}
+    </div>
+    {{end}}
+
+</body>
+</html>
+

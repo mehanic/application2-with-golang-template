@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{.Title}}</title>
+</head>
+<body>
+    <h1>{{.Heading}}</h1>
+    <p>{{.Message}}</p>
+<p>Score1: {{.Scores.Score1}}</p>
+<p>Score2: {{.Scores.Score2}}</p>
+
+{{if gt .Scores.Score1 .Scores.Score2}}
+<p style="color:green;">SCORE 1 &gt; SCORE 2</p>
+{{end}}
+
+{{if lt .Scores.Score1 .Scores.Score2}}
+<p style="color:red;">SCORE 1 &lt; SCORE 2</p>
+{{end}}
+
+{{if eq .Scores.Score1 .Scores.Score2}}
+<p style="color:blue;">SCORE 1 = SCORE 2</p>
+{{end}}
+
+{{if lt .Scores.Score1 10}}
+<p>LAST ONE: SCORE 1 &lt; 10</p>
+{{end}}
+    <h3>Words</h3>
+    <ul>
+    {{range .Words}}
+        <li>{{.}}</li>
+    {{end}}
+    </ul>
+
+    <p>Last name: {{.Lname}}</p>
+
+
+    <h3>Users</h3>
+    <ul>
+    {{range .Users}}
+        <li>
+            {{if .Name}}{{.Name}}{{else}}(no name){{end}} — "{{.Motto}}"
+            {{if .Admin}}<strong>[ADMIN]</strong>{{end}}
+        </li>
+    {{end}}
+    </ul>  
+
+    <h3>Users</h3>
+    <ul>
+    <!-- EXAMPLE #1: просто весь об'єкт -->
+    {{range .Users}}
+        <li style="color: red;">EXAMPLE #1 → {{.}}</li>
+    {{end}}
+    </ul>
+
+    <ul>
+    <!-- EXAMPLE #2: if . -->
+    {{if .Users}}
+        <li style="color: red;">EXAMPLE #2 → Users exist (len={{len .Users}})</li>
+    {{end}}
+    </ul>
+
+    <ul>
+    <!-- EXAMPLE #3: тільки Name -->
+    {{range .Users}}
+        {{if .Name}}
+            <li style="color: red;">EXAMPLE #3 → {{.Name}}</li>
+        {{end}}
+    {{end}}
+    </ul>
+
+    <ul>
+    <!-- EXAMPLE #4: коли Name є і Admin == true -->
+    {{range .Users}}
+        {{if and .Name .Admin}}
+            <li style="color: red;">EXAMPLE #4 → Name: {{.Name}}, Motto: "{{.Motto}}", Admin: {{.Admin}}</li>
+        {{end}}
+    {{end}}
+    </ul>
+
+    <ul>
+    <!-- EXAMPLE #5: тільки перший елемент масиву Users -->
+    {{if .Users}}
+        {{with index .Users 0}}
+            <li style="color: red;">EXAMPLE #5 → First User: {{.Name}} ({{.Motto}}) [Admin: {{.Admin}}]</li>
+        {{end}}
+    {{end}}
+    </ul>
+
+        <ul>
+<!-- EXAMPLE #6: показати останнього користувача -->
+{{if .Users}}
+    {{with index .Users (sub (len .Users) 1)}}
+        <li style="color: red;">EXAMPLE #6 → Last User: {{.Name}} ({{.Motto}})</li>
+    {{end}}
+{{end}}
+</ul>
+
+<ul>
+<!-- EXAMPLE #7: показати індекс + значення -->
+{{range $i, $u := .Users}}
+    <li style="color: red;">EXAMPLE #7 → Index {{$i}}, User: {{$u.Name}} (Admin: {{$u.Admin}})</li>
+{{end}}
+</ul>
+
+<ul>
+<!-- EXAMPLE #8: тільки Admin == false -->
+{{range .Users}}
+    {{if not .Admin}}
+        <li style="color: red;">EXAMPLE #8 → Non-admin user: {{.Name}}</li>
+    {{end}}
+{{end}}
+</ul>
+
+<ul>
+<!-- EXAMPLE #9: якщо Users порожній -->
+{{if not .Users}}
+    <li style="color: red;">EXAMPLE #9 → No users found!</li>
+{{else}}
+    <li style="color: red;">EXAMPLE #9 → Users loaded (len={{len .Users}})</li>
+{{end}}
+</ul>
+
+</body>
+</html>
+:

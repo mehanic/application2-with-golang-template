@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{.Title}}</title>
+</head>
+<body>
+<h1>{{.Heading}}</h1>
+<p>{{.Message}}</p>
+<ul>
+{{range $key, $value := .Items}}
+    <li>{{$key}}: {{$value}}</li>
+{{end}}
+</ul>
+<ul>
+    <li>{{.Sage.Name}} - {{.Sage.Motto}}</li>
+
+<h2>Wisdom</h2>
+<ul>
+{{range .Wisdom}}
+    <li>{{.Name1}} — {{.Motto1}}</li>
+{{end}}
+</ul>
+
+<h2>Transport</h2>
+<ul>
+{{range .Transport}}
+    <li>{{.Manufacturer}} {{.Model}} ({{.Doors}} doors)</li>
+{{end}}
+</ul>
+        <ul>
+    {{$x := .Sage.Name}}
+    {{$y := .Sage.Motto}}
+            <li>{{$x}}</li> 
+            <li> {{$y}}</li>
+</ul>
+</body>
+</html>
+

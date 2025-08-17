@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{.Title}}</title>
+</head>
+<body>
+<h1>{{.Heading}}</h1>
+<p>{{.Message}}</p>
+<p>Without date formatting: {{.SomeDate}}</p>
+<p>With date formatting: {{fdateMDY .SomeDate}}</p>
+        <h3>Thinkers</h3>
+<ul>
+    {{range .Thinkers}}
+        <li>{{uc .Name2}} - {{ft .Motto2}}</li>
+    {{end}}
+</ul>
+        <h3>Math examples with data</h3>
+<ul>
+    <li>Double of {{.Number}}: {{fdbl .Number}}</li>
+    <li>Square of {{.Number}}: {{fsq .Number}}</li>
+    <li>Square root of {{.FloatNum}}: {{fsqrt .FloatNum}}</li>
+</ul>
+
+<h3>Vehicles</h3>
+<ul>
+    {{range .Vehicles}}
+        <li>{{.Manufacturer}} {{.Model}} ({{.Doors}} doors)</li>
+    {{end}}
+</ul>
+</body>
+</html>
+

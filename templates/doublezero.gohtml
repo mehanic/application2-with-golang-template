@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ .Person.Name }} Profile</title>
+</head>
+<body>
+<h1>{{ .Person.Name }}</h1>
+<p>Age: {{ .Person.Age }}</p>
+<p>License to Kill: {{ if .LicenseToKill }}Yes{{ else }}No{{ end }}</p>
+</body>
+</html>
+

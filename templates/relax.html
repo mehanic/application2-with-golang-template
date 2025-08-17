@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{.Title}}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1, h2 { color: #2c3e50; }
+        ul { list-style-type: none; padding-left: 0; }
+        li { margin: 5px 0; }
+        .hotel { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 5px; }
+        .region { margin-bottom: 30px; }
+    </style>
+</head>
+<body>
+    <h1>{{.Heading}}</h1>
+    <p>{{.Message}}</p>
+
+    {{range .Regions}}
+        <div class="region">
+            <h2>Region: {{.Region}}</h2>
+            {{range .Hotels}}
+                <div class="hotel">
+                    <strong>{{.Name}}</strong><br>
+                    {{.Address}}, {{.City}}, {{.Zip}}<br>
+                    Region: {{.Region}}
+                </div>
+            {{end}}
+        </div>
+    {{end}}
+
+<h2>Menu</h2>
+<ul>
+{{range .Menu}}
+    <li>
+        <strong>{{.Name}}</strong> ({{.Meal}}) - ${{printf "%.2f" .Price}}<br>
+        {{.Descrip}}
+    </li>
+{{end}}
+</body>
+</html>
+

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h2 { color: #444; border-bottom: 1px solid #ccc; }
+        table { width: 60%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px 12px; }
+        th { background: #f9f9f9; }
+        .price { text-align: right; }
+    </style>
+</head>
+<body>
+    <h1>Restaurant Menu</h1>
+
+    {{range .}}
+        <h2>{{.Meal}}</h2>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Description</th>
+                <th class="price">Price</th>
+            </tr>
+            {{range .Item}}
+            <tr>
+                <td>{{.Name}}</td>
+                <td>{{.Descrip}}</td>
+                <td class="price">${{printf "%.2f" .Price}}</td>
+            </tr>
+            {{end}}
+        </table>
+    {{end}}
+
+</body>
+</html>
+
